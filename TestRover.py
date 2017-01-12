@@ -30,12 +30,22 @@ class MoveTests(unittest.TestCase):
     def test_wrap_left(self):
         self.Rover.position = [0, 0, "W"]
         result = self.Rover.move_rover("F")
-        expected = [9, 0, "W"]
+        expected = [Rover.grid_size - 1, 0, "W"]
         self.assertEqual(expected, result)
 
     def test_wrap_bottom(self):
         result = self.Rover.move_rover("B")
-        expected = [0, 9, "N"]
+        expected = [0, Rover.grid_size - 1, "N"]
+        self.assertEqual(expected, result)
+
+    def test_move_square(self):
+        result = self.Rover.move_rover("FRFRFRF")
+        expected = [0, 0, "W"]
+        self.assertEqual(expected, result)
+
+    def test_move_from_instructions(self):
+        result = self.Rover.move_rover("FFRFF")
+        expected = [2, 2, "E"]
         self.assertEqual(expected, result)
 
 if __name__ == '__main__':

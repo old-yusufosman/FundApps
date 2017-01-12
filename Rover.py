@@ -1,4 +1,4 @@
-grid_size = 10
+grid_size = 100
 
 
 def calculate_new_direction(facing, direction):
@@ -36,9 +36,13 @@ class Rover:
         self.position = [0, 0, "N"]
 
     def move_rover(self, direction):
-        if direction == "F" or direction == "B":
-            new_position = calculate_new_position(self.position, direction)
-            return new_position
-        elif direction == "L" or direction == "R":
-            new_direction = calculate_new_direction(self.position[2], direction)
-            return [0, self.position[1], new_direction]
+        for char in direction:
+            if char == "F" or char == "B":
+                new_position = calculate_new_position(self.position, char)
+                self.position = new_position
+
+            elif char == "L" or char == "R":
+                new_direction = calculate_new_direction(self.position[2], char)
+                self.position = [self.position[0], self.position[1], new_direction]
+
+        return self.position
