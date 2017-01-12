@@ -48,5 +48,15 @@ class MoveTests(unittest.TestCase):
         expected = [2, 2, "E"]
         self.assertEqual(expected, result)
 
+    def test_move_square_wrap(self):
+        result = self.Rover.move_rover("LFRFRFRF")
+        expected = [0, 0, "S"]
+        self.assertEqual(expected, result)
+
+    def test_wrap_down_left(self):
+        result = self.Rover.move_rover("BLF")
+        expected = [Rover.grid_size - 1, Rover.grid_size - 1, "W"]
+        self.assertEqual(expected, result)
+
 if __name__ == '__main__':
     unittest.main()
