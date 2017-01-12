@@ -3,8 +3,6 @@ import Rover
 
 
 class MoveTests(unittest.TestCase):
-    position = [0, 0, "N"]
-
     def test_move_north(self):
         result = Rover.move_rover("F")
         expected = [0, 1, "N"]

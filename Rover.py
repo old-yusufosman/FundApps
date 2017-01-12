@@ -1,4 +1,5 @@
 position = [0, 0, "N"]
+grid_size = 10
 
 def calculate_new_direction(facing, direction):
     combined = facing+direction
