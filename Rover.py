@@ -1,4 +1,5 @@
 grid_size = 100
+obstacles = [(1, 4), (98, 99)]
 
 
 def calculate_new_direction(facing, direction):
@@ -31,6 +32,13 @@ def calculate_new_position(position, direction):
     return direction_dictionary.get(combined, ["key {} not found".format(combined)])
 
 
+def is_colliding(x, y):
+    if (x, y) in obstacles:
+        return True
+    else:
+        return False
+
+
 class Rover:
     def __init__(self):
         self.position = [0, 0, "N"]
@@ -39,6 +47,9 @@ class Rover:
         for char in direction:
             if char == "F" or char == "B":
                 new_position = calculate_new_position(self.position, char)
+                if is_colliding(new_position[0], new_position[1]):
+                    print "Collision detected at point {}, {}.  Stopping now.".format(new_position[0], new_position[1])
+                    break
                 self.position = new_position
 
             elif char == "L" or char == "R":

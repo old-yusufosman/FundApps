@@ -58,5 +58,15 @@ class MoveTests(unittest.TestCase):
         expected = [Rover.grid_size - 1, Rover.grid_size - 1, "W"]
         self.assertEqual(expected, result)
 
+    def test_collision(self):
+        result = self.Rover.move_rover("FFFFRF")
+        expected = [0, 4, "E"]
+        self.assertEqual(expected, result)
+
+    def test_wrap_collision(self):
+        result = self.Rover.move_rover("BLFF")
+        expected = [Rover.grid_size - 1, Rover.grid_size - 1, "W"]
+        self.assertEqual(expected, result)
+
 if __name__ == '__main__':
     unittest.main()
